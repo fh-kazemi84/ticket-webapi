@@ -11,6 +11,6 @@ namespace ticket_webapi.Core.DTO
         public PersonDto Passenger { get; set; }
         public string FromCity { get; set; }
         public string ToCity { get; set; }
-        public int Price { get; set; }
+        public float Price { get; set; }
     }
 }
