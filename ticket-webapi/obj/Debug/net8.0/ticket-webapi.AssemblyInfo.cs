@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ticket-webapi")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e6d47fd635210485181200910f21376abb0d2802")]
 [assembly: System.Reflection.AssemblyProductAttribute("ticket-webapi")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ticket-webapi")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

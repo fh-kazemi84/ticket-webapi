@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Internet\\Desktop\\Projekt\\ticket\\ticket-webapi\\ticket-webapi.csproj": {}
+    "c:\\Users\\Internet\\Desktop\\Projekt\\ticket\\ticket-webapi\\ticket-webapi.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Internet\\Desktop\\Projekt\\ticket\\ticket-webapi\\ticket-webapi.csproj": {
+    "c:\\Users\\Internet\\Desktop\\Projekt\\ticket\\ticket-webapi\\ticket-webapi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Internet\\Desktop\\Projekt\\ticket\\ticket-webapi\\ticket-webapi.csproj",
+        "projectUniqueName": "c:\\Users\\Internet\\Desktop\\Projekt\\ticket\\ticket-webapi\\ticket-webapi.csproj",
         "projectName": "ticket-webapi",
-        "projectPath": "C:\\Users\\Internet\\Desktop\\Projekt\\ticket\\ticket-webapi\\ticket-webapi.csproj",
+        "projectPath": "c:\\Users\\Internet\\Desktop\\Projekt\\ticket\\ticket-webapi\\ticket-webapi.csproj",
         "packagesPath": "C:\\Users\\Internet\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Internet\\Desktop\\Projekt\\ticket\\ticket-webapi\\obj\\",
+        "outputPath": "c:\\Users\\Internet\\Desktop\\Projekt\\ticket\\ticket-webapi\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Internet\\AppData\\Roaming\\NuGet\\NuGet.Config"

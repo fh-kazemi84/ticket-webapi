@@ -73,3 +73,4 @@ C:\Users\Internet\Desktop\Projekt\ticket\ticket-webapi\obj\Debug\net8.0\refint\t
 C:\Users\Internet\Desktop\Projekt\ticket\ticket-webapi\obj\Debug\net8.0\ticket-webapi.pdb
 C:\Users\Internet\Desktop\Projekt\ticket\ticket-webapi\obj\Debug\net8.0\ticket-webapi.genruntimeconfig.cache
 C:\Users\Internet\Desktop\Projekt\ticket\ticket-webapi\obj\Debug\net8.0\ref\ticket-webapi.dll
+c:\Users\Internet\Desktop\Projekt\ticket\ticket-webapi\obj\Debug\net8.0\ticket-webapi.sourcelink.json
