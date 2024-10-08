@@ -41,7 +41,7 @@ namespace ticket_webapi.Migrations
                     PassengerId = table.Column<long>(type: "bigint", nullable: false),
                     FromCity = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ToCity = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Price = table.Column<float>(type: "real", nullable: false),
+                    Price = table.Column<int>(type: "real", nullable: false),
                     CreateAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdateAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ConfidentialComment = table.Column<string>(type: "nvarchar(max)", nullable: false)
