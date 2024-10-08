@@ -14,7 +14,7 @@ namespace ticket_webapi.Core.Entities
         public Person Passenger { get; set; }
         public string FromCity { get; set; }
         public string ToCity { get; set; }
-        public int Price { get; set; }
+        public float Price { get; set; }
         public DateTime CreateAt { get; set; } = DateTime.Now;
         public DateTime UpdateAt { get; set; } = DateTime.Now;
         public string ConfidentialComment { get; set; } = "Normal";
