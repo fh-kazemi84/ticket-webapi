@@ -1,6 +1,7 @@
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using ticket_webapi.Core.Context;
+using ticket_webapi.Core.DTO;
 using ticket_webapi.Core.Entities;
 
 namespace ticket_webapi.Controller
