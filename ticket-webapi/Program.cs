@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using ticket_webapi.Core.AutoMapperConfig;
 using ticket_webapi.Core.Context;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,6 +10,9 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     var connectionString = builder.Configuration.GetConnectionString("local");
     options.UseSqlServer(connectionString);
 });
+
+//Config AutoMapper
+builder.Services.AddAutoMapper(typeof (AutoMapperConfigProfile));
 
 builder.Services.AddControllers();
 
