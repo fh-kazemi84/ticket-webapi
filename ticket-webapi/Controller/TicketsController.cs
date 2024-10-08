@@ -24,9 +24,7 @@ namespace ticket_webapi.Controller
         [Route("create")]
         public async Task<IActionResult> createTicket([FromBody] CreateTicketDto createTicketDto)
         {
-            var newTicket = new Ticket();
-
-            _mapper.Map(createTicketDto, newTicket);
+            var newTicket = _mapper.Map<Ticket>(createTicketDto);
 
             await _context.Tickets.AddAsync(newTicket);
             await _context.SaveChangesAsync();
