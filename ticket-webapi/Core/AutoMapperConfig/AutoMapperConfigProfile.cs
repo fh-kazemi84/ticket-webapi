@@ -10,6 +10,7 @@ namespace ticket_webapi.Core.AutoMapperConfig
         {
             //Tickets
             CreateMap<CreateTicketDto, Ticket>();
+            CreateMap<PersonDto, Person>();
         }
     }
 }
