@@ -80,5 +80,25 @@ namespace ticket_webapi.Controller
 
             return Ok(convertedTicket);
         }
+
+        //Update
+        [HttpPut]
+        [Route("edit/{id}")]
+        public async Task<IActionResult> UpdateTicket([FromRoute] long id, [FromBody] UpdateTicketDto updateTicketDto)
+        {
+            //Get Tickets from Context and check if exist
+            var ticket = await _context.Tickets.Include(t => t.Passenger).FirstOrDefaultAsync(t => t.Id == id);
+
+            if (ticket is null)
+            {
+                return NotFound("Ticket Not Found");
+            }
+
+            _mapper.Map(updateTicketDto, ticket);
+            ticket.UpdateAt = DateTime.Now;
+            await _context.SaveChangesAsync();
+
+            return Ok("Ticket Updated Successfully");
+        }
     }
 }
