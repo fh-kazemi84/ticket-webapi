@@ -100,5 +100,24 @@ namespace ticket_webapi.Controller
 
             return Ok("Ticket Updated Successfully");
         }
+
+        //Delete
+        [HttpDelete]
+        [Route("delete/{id}")]
+        public async Task<IActionResult> DeleteTicket([FromRoute] long id)
+        {
+            //Get Tickets from Context and check if exist
+            var ticket = await _context.Tickets.Include(t => t.Passenger).FirstOrDefaultAsync(t => t.Id == id);
+
+            if (ticket is null)
+            {
+                return NotFound("Ticket Not Found");
+            }
+
+            _context.Remove(ticket);
+            await _context.SaveChangesAsync();
+
+            return Ok("Ticket Deleted Successfully");
+        }
     }
 }
