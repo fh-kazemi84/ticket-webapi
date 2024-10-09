@@ -11,6 +11,7 @@ namespace ticket_webapi.Core.AutoMapperConfig
            //Tickets
             CreateMap<CreateTicketDto, Ticket>();
             CreateMap<Ticket, GetTicketDto>();
+            CreateMap<UpdateTicketDto, Ticket>();
             
             //Persons
             CreateMap<PersonDto, Person>();
