@@ -44,5 +44,23 @@ namespace ticket_webapi.Controller
 
             return Ok(convertedTickets);
         }
+
+        //Read by name
+        [HttpGet]
+        [Route("getbyname")]
+        public async Task<ActionResult<IEnumerable<GetTicketDto>>> GetTicketsByName(string? name)
+        {
+            IQueryable<Ticket> query = _context.Tickets;
+
+            if (name is not null)
+            {
+                query = query.Where(t => t.Passenger.FirstName.Contains(name) || t.Passenger.LastName.Contains(name));
+            }
+
+            var tickets = await query.Include(t => t.Passenger).ToListAsync();
+            var convertedTickets = _mapper.Map<IEnumerable<GetTicketDto>>(tickets);
+
+            return Ok(convertedTickets);
+        }
     }
 }
