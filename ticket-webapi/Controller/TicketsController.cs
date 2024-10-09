@@ -62,5 +62,23 @@ namespace ticket_webapi.Controller
 
             return Ok(convertedTickets);
         }
+
+        //Read by id
+        [HttpGet]
+        [Route("{id}")]
+        public async Task<ActionResult<GetTicketDto>> GetTicketById([FromRoute]long id)
+        {
+            //Get Tickets from Context and check if exist
+            var ticket = await _context.Tickets.Include(t => t.Passenger).FirstOrDefaultAsync(t => t.Id == id);
+
+            if (ticket is null)
+            {
+                return NotFound("Ticket Not Found");
+            }
+
+            var convertedTicket = _mapper.Map<GetTicketDto>(ticket);
+
+            return Ok(convertedTicket);
+        }
     }
 }
