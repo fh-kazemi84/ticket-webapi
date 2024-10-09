@@ -8,9 +8,13 @@ namespace ticket_webapi.Core.AutoMapperConfig
     {
         public AutoMapperConfigProfile()
         {
-            //Tickets
+           //Tickets
             CreateMap<CreateTicketDto, Ticket>();
+            CreateMap<Ticket, GetTicketDto>();
+            
+            //Persons
             CreateMap<PersonDto, Person>();
+            CreateMap<Person, PersonDto>();
         }
     }
 }
