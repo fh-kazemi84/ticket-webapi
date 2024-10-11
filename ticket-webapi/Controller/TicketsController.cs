@@ -119,5 +119,10 @@ namespace ticket_webapi.Controller
 
             return Ok("Ticket Deleted Successfully");
         }
+
+        internal async Task UpdateTicketd(int v, UpdateTicketDto updateTicketDto)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
