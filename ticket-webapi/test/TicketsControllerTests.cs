@@ -151,5 +151,40 @@ namespace ticket_webapi.test
             Assert.AreEqual("Cologne", ticketList[1].ToCity);
             Assert.AreEqual("John", ticketList[1].Passenger.FirstName); // Check passenger information
         }
+
+        //Test: GetTicketById (GET by ID)
+        [TestMethod]
+        public async Task GetTicketById_ShouldReturnCorrectTicket()
+        {
+            // Arrange
+            _context.Tickets.Add(new Ticket
+            {
+                Id = 1,
+                FromCity = "Berlin",
+                ToCity = "Munich",
+                Passenger = new Person
+                {
+                    FirstName = "Sara",
+                    LastName = "Meo",
+                    Nationality = "US",
+                    PassportNummber = "H523695321",
+                    BirthDate = DateTime.Now,
+                    Gender = "f",
+                    Address = "Sanferasisco",
+                    Phone = "1234567890"
+                }
+            });
+            await _context.SaveChangesAsync();
+
+            // Act
+            var result = await _controller.GetTicketById(1);
+            var okResult = result.Result as OkObjectResult;
+            var ticketDto = okResult.Value as GetTicketDto;
+
+            // Assert
+            Assert.IsNotNull(ticketDto);
+            Assert.AreEqual("Berlin", ticketDto.FromCity);
+            Assert.AreEqual("Sara", ticketDto.Passenger.FirstName);
+        }        
     } 
 }
