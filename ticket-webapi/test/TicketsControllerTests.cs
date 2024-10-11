@@ -5,7 +5,7 @@ using ticket_webapi.Controller;
 using ticket_webapi.Core.Context;
 using ticket_webapi.Core.DTO;
 using ticket_webapi.Core.Entities;
-
+using Microsoft.AspNetCore.Mvc;
 
 namespace ticket_webapi.test
 {
@@ -41,5 +41,53 @@ namespace ticket_webapi.test
             _controller = new TicketsController(_context, _mapper);
         }
 
+        //Clean Up the database after each test
+        [TestCleanup]
+        public void CleanUp()
+        {
+            _context.Database.EnsureDeleted();
+            _context.Dispose();
+        }
+
+        //Test: CreateTickets (Post)
+        [TestMethod]
+        public async Task CreateTicket_ShouldSaveTicketToDatabase()
+        {
+            // Arrange
+            var createTicketDto = new CreateTicketDto
+            {
+                Time = DateTime.Now,
+                FromCity = "Berlin",
+                ToCity = "Munich",
+                Price = 50.0f,
+                Passenger = new PersonDto
+                {
+                    FirstName = "Sara",
+                    LastName = "Meo",
+                    PassportNummber = "Z14523654",
+                    Nationality = "De",
+                    Phone = "14523659875",
+                    BirthDate = DateTime.Today,
+                    Gender = "Male",
+                    Address = "Frankfurt"
+                }
+            };
+
+            // Act
+            var result = await _controller.createTicket(createTicketDto);
+            var okResult = result as OkObjectResult;
+
+            // Assert
+            Assert.IsNotNull(okResult);
+            Assert.AreEqual(200, okResult.StatusCode);
+
+            // Verify the ticket was saved in the database
+            var savedTicket = await _context.Tickets.Include(t => t.Passenger).FirstOrDefaultAsync();
+            Assert.IsNotNull(savedTicket); // Ensure the ticket was actually saved
+            Assert.AreEqual("Berlin", savedTicket.FromCity);
+            Assert.AreEqual("Munich", savedTicket.ToCity);
+            Assert.AreEqual("Sara", savedTicket.Passenger.FirstName);
+            Assert.AreEqual("Meo", savedTicket.Passenger.LastName);
+        }
     }
 }
