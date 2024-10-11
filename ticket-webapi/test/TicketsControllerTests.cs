@@ -236,6 +236,37 @@ namespace ticket_webapi.test
             // Assert
             var updatedTicket = _context.Tickets.First(t => t.Id == 1);
             Assert.AreEqual("Hamburg", updatedTicket.FromCity);
-        }     
+        }   
+
+        // Test: DeleteTicket (DELETE)
+        [TestMethod]
+        public async Task DeleteTicket_ShouldRemoveTicketFromDatabase()
+        {
+            // Arrange
+            _context.Tickets.Add(new Ticket
+            {
+                Id = 1,
+                FromCity = "Berlin",
+                ToCity = "Munich",
+                Passenger = new Person
+                {
+                    FirstName = "Sara",
+                    LastName = "Meo",
+                    Nationality = "US",
+                    PassportNummber = "H523695321",
+                    BirthDate = DateTime.Now,
+                    Gender = "f",
+                    Address = "Sanferasisco",
+                    Phone = "1234567890"
+                }
+            });
+            await _context.SaveChangesAsync();
+
+            // Act
+            var result = await _controller.DeleteTicket(1);
+
+            // Assert
+            Assert.AreEqual(0, _context.Tickets.Count());
+        }  
     } 
 }
