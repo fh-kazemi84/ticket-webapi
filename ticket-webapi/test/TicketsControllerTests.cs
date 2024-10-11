@@ -89,5 +89,67 @@ namespace ticket_webapi.test
             Assert.AreEqual("Sara", savedTicket.Passenger.FirstName);
             Assert.AreEqual("Meo", savedTicket.Passenger.LastName);
         }
-    }
+
+        //Test: GetTickets (GET)
+        [TestMethod]
+        public async Task GetTickets_ShouldReturnAllTicketsWithPassengers()
+        {
+            // Arrange
+            _context.Tickets.Add(new Ticket
+            {
+                FromCity = "Berlin",
+                ToCity = "Munich",
+                Passenger = new Person
+                {
+                    FirstName = "Sara",
+                    LastName = "Meo",
+                    Nationality = "US",
+                    PassportNummber = "H523695321",
+                    BirthDate = DateTime.Now,
+                    Gender = "f",
+                    Address = "Sanferasisco",
+                    Phone = "1234567890"
+                }
+            });
+
+            _context.Tickets.Add(new Ticket
+            {
+                FromCity = "Hamburg",
+                ToCity = "Cologne",
+                Passenger = new Person
+                {
+                    FirstName = "John",
+                    LastName = "Doe",
+                    Nationality = "EN",
+                    PassportNummber = "N564457545",
+                    BirthDate = DateTime.Now,
+                    Gender = "m",
+                    Address = "London",
+                    Phone = "0987654321"
+                }
+            });
+
+            await _context.SaveChangesAsync();
+
+            // Act
+            var result = await _controller.GetTickets();
+            var okResult = result.Result as OkObjectResult;
+            var tickets = okResult.Value as IEnumerable<GetTicketDto>;
+
+            // Assert
+            Assert.IsNotNull(okResult);
+            Assert.IsNotNull(tickets);
+
+            // Convert to list to assert properties
+            var ticketList = tickets.ToList();
+
+            Assert.AreEqual(2, ticketList.Count);
+            Assert.AreEqual("Berlin", ticketList[0].FromCity);
+            Assert.AreEqual("Munich", ticketList[0].ToCity);
+            Assert.AreEqual("Sara", ticketList[0].Passenger.FirstName); // Check passenger information
+            Assert.AreEqual("Hamburg", ticketList[1].FromCity);
+            Assert.AreEqual("Cologne", ticketList[1].ToCity);
+            Assert.AreEqual("John", ticketList[1].Passenger.FirstName); // Check passenger information
+        }
+    } 
 }
