@@ -185,6 +185,57 @@ namespace ticket_webapi.test
             Assert.IsNotNull(ticketDto);
             Assert.AreEqual("Berlin", ticketDto.FromCity);
             Assert.AreEqual("Sara", ticketDto.Passenger.FirstName);
-        }        
+        }   
+
+        // Test: UpdateTicket (PUT)
+        [TestMethod]
+        public async Task UpdateTicket_ShouldUpdateTicketDetails()
+        {
+            // Arrange
+            _context.Tickets.Add(new Ticket
+            {
+                Id = 1,
+                FromCity = "Berlin",
+                ToCity = "Munich",
+                Passenger = new Person
+                {
+                    FirstName = "Sara",
+                    LastName = "Meo",
+                    Nationality = "US",
+                    PassportNummber = "H523695321",
+                    BirthDate = DateTime.Now,
+                    Gender = "f",
+                    Address = "Sanferasisco",
+                    Phone = "1234567890"
+                }
+            });
+            await _context.SaveChangesAsync();
+
+            var updateTicketDto = new UpdateTicketDto
+            {
+                Time = DateTime.Now,
+                FromCity = "Hamburg",
+                ToCity = "London",
+                Price = 104,
+                Passenger = new PersonDto
+                {
+                    FirstName = "Sara",
+                    LastName = "Meo",
+                    Nationality = "US",
+                    PassportNummber = "H523695321",
+                    BirthDate = DateTime.Now,
+                    Gender = "f",
+                    Address = "Sanferasisco",
+                    Phone = "1234567890"
+                }
+            };
+
+            // Act
+            var result = await _controller.UpdateTicket(1, updateTicketDto);
+
+            // Assert
+            var updatedTicket = _context.Tickets.First(t => t.Id == 1);
+            Assert.AreEqual("Hamburg", updatedTicket.FromCity);
+        }     
     } 
 }
